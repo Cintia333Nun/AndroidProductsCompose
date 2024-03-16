@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -28,39 +29,39 @@ fun ProductDataScreen(
     name: String, description: String, price: String, url: String, onBackPressed: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .verticalScroll(
+                rememberScrollState()
+            )
+            .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        LazyColumn {
-            items(1) {
-                Text(
-                    modifier = Modifier
-                        .padding(top = 24.dp)
-                        .fillMaxWidth(),
-                    text = name,
-                    textAlign = TextAlign.Center,
-                    color = black,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                ImageWithCoil(
-                    key = name, url = url, height = 300//, width = 300
-                )
-                Text(
-                    modifier = Modifier
-                        .padding(vertical = 24.dp, horizontal = 16.dp)
-                        .fillMaxWidth(),
-                    text = description,
-                )
-                Text(
-                    modifier = Modifier
-                        .padding(top = 24.dp, bottom = 32.dp)
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    text = price,
-                )
-            }
-        }
+        Text(
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .fillMaxWidth(),
+            text = name,
+            textAlign = TextAlign.Center,
+            color = black,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold
+        )
+        ImageWithCoil(
+            key = name, url = url, height = 300//, width = 300
+        )
+        Text(
+            modifier = Modifier
+                .padding(vertical = 24.dp, horizontal = 16.dp)
+                .fillMaxWidth(),
+            text = description,
+        )
+        Text(
+            modifier = Modifier
+                .padding(top = 24.dp, bottom = 32.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = price,
+        )
         Button(
             modifier = Modifier
                 .fillMaxWidth()
